@@ -1,12 +1,1 @@
-[
-    {"id":"1","studentName":"Toheeb","course":"Full stack","duration":"One year"},
-    {"id":"2","studentName":"Tobi","course":"Frontend","duration":"One year"},
-    {"id":"3","studentName":"Blessing","course":"Full stack","duration":"One year"},
-    {"id":"4","studentName":"Nelson","course":"Full stack","duration":"One year"},
-    {"id":"5","studentName":"Precious","course":"UIUX","duration":"One year"},
-    {"id":"6","studentName":"Micheal","course":"Backend","duration":"One year"},
-    {"id":"7","studentName":"Gabriel","course":"Frontend","duration":"One year"},
-    {"id":"8","studentName":"Victor","course":"Full stack","duration":"One year"},
-    {"id":"9","studentName":"David","course":"Backend","duration":"One year"},
-    {"id":"10","studentName":"Bello","course":"Full stack","duration":"One year"}
-]
+[{"id":"1","course":"Full stack","duration":"One year"},{"id":"2","studentName":"Tobi","course":"Frontend","duration":"One year"},{"id":"3","studentName":"Blessing","course":"Full stack","duration":"One year"},{"id":"4","studentName":"Nelson","course":"Full stack","duration":"One year"},{"id":"5","studentName":"Precious","course":"UIUX","duration":"One year"},{"id":"6","studentName":"Micheal","course":"Backend","duration":"One year"},{"id":"7","studentName":"Gabriel","course":"Frontend","duration":"One year"},{"id":"8","studentName":"Victor","course":"Full stack","duration":"One year"},{"id":"8","studentName":"Blank","course":"Evicted","duration":"One years"}]

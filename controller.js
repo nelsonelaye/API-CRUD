@@ -54,7 +54,6 @@ const createNewStudent = async (req, res) => {
 }
 
 //update student data
-
 const updateStudentData = async (req, res , id) => {
     try {
         const ID = await allModel.getOne(id)
@@ -68,15 +67,14 @@ const updateStudentData = async (req, res , id) => {
 
         req.on("end", async ()=> {
             const {studentName, course, duration} = JSON.parse(body)
-            const studentID = {
-                id: id,
+            const studentUpdate = {
                 studentName, 
                 course, 
                 duration
             }
 
             res.writeHead(200, {"content-type": "application/json"})
-            res.end(JSON.stringify( await allModel.update(studentID)))
+            res.end(JSON.stringify( await allModel.update(id, studentUpdate)))
         })
         
         } else {
@@ -84,9 +82,7 @@ const updateStudentData = async (req, res , id) => {
             res.end(JSON.stringify({"message": `Student with id ${id} not found`}))
     }}catch (error) {
         console.log("error.message")
-    }
-        
-       
+    }     
 }
 
 //delete student data

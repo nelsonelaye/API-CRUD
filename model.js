@@ -49,10 +49,12 @@ const create = (newStudent) => {
 //update student data 
 const update = (id, newData) => {
     return new Promise((resolve, reject) => {
-        let studentID = data.find((d) => d.id === id)
-         studentID = {...newData}
+        let studentID = data.find((d) =>d.id === id)
+           studentID = {"id": id, ...newData}
+        
+        // let index = data.indexOf(studentID)
 
-        // data.push(studentID)
+        // data.splice(index, 1, studentID)
 
         fs.writeFileSync("./data.json", JSON.stringify(data), (error)=> {
             if (error) {
@@ -61,7 +63,7 @@ const update = (id, newData) => {
                 console.log("Update successful")
             }
         })
-        resolve(studentID)
+        resolve(data)
     })
 }
 
@@ -71,25 +73,20 @@ const update = (id, newData) => {
 const deleteData  = (id)=> {
     return new Promise((resolve, reject)=> {
         try {
-            let studentID = data.filter(d => d.id === id)
+            let studentID = data.find((d) => d.id === id)
 
             //test if function is getting the right data
             console.log(studentID)
 
             let index = data.indexOf(studentID)
-            // if(studentID ){
-            //     data.find((d) => d.id === id)
-            // } else {
-            //     console.log("element not found")
-            // }
-            // data.splice(index, 1)
+            data.splice(index, 1)
 
-            //update data
-            //  fs.writeFile("./data.json", JSON.stringify(data), (error) => {
-            //     if (error) {
-            //         console.log("could not update file")
-            //     }
-            // })
+            // update data file
+             fs.writeFile("./data.json", JSON.stringify(data), (error) => {
+                if (error) {
+                    console.log("could not update file")
+                }
+            })
 
         resolve(data)
             
@@ -98,10 +95,6 @@ const deleteData  = (id)=> {
         }
         // let indexVal = data.findIndex((d) => d.id === id)
         
-        
-
-       
-
         
     })
 }
