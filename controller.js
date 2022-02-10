@@ -10,7 +10,7 @@ const readAll = async (req, res) => {
     }
 }
 
-//reada one file based on id
+//read one file based on id
 
 const readOne = async (req, res, id) => {
     try {
@@ -68,9 +68,9 @@ const updateStudentData = async (req, res , id) => {
         req.on("end", async ()=> {
             const {studentName, course, duration} = JSON.parse(body)
             const studentUpdate = {
-                studentName, 
-                course, 
-                duration
+                studentName: studentName || ID.studentName, 
+                course: course || ID.course,
+                duration: duration || ID.duration,
             }
 
             res.writeHead(200, {"content-type": "application/json"})
@@ -81,7 +81,7 @@ const updateStudentData = async (req, res , id) => {
             res.writeHead(200, {"content-type": "application/json"})
             res.end(JSON.stringify({"message": `Student with id ${id} not found`}))
     }}catch (error) {
-        console.log("error.message")
+        console.log(error.message)
     }     
 }
 
@@ -91,8 +91,10 @@ const deleteStudentData = async (req, res , id) => {
     try {
         const studentID = await allModel.getOne(id)
         if (studentID) {
+
+            await allModel.deleteData(id)
             res.writeHead(200, {"content-type": "application/json"})
-            res.end(JSON.stringify(await allModel.deleteData(id)))
+            res.end(JSON.stringify({message: `Student with id ${id} deleted`}))
         } else {
             res.writeHead(404, {"content-type": "application/json"})
             res.end(JSON.stringify({"message": "Student cannot be deleted. It does not exist"}))

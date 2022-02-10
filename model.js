@@ -1,4 +1,4 @@
-const data = require("./data.json")
+let data = require("./data.json")
 const {v4: uuidv4} = require('uuid')
 
 const fs = require("fs")
@@ -49,8 +49,8 @@ const create = (newStudent) => {
 //update student data 
 const update = (id, newData) => {
     return new Promise((resolve, reject) => {
-        let studentID = data.find((d) =>d.id === id)
-           studentID = {"id": id, ...newData}
+        let index= data.findIndex((d) =>d.id === id)
+           data[index]= {id, ...newData}
         
         // let index = data.indexOf(studentID)
 
@@ -63,7 +63,7 @@ const update = (id, newData) => {
                 console.log("Update successful")
             }
         })
-        resolve(data)
+        resolve(data[index])
     })
 }
 
@@ -73,13 +73,15 @@ const update = (id, newData) => {
 const deleteData  = (id)=> {
     return new Promise((resolve, reject)=> {
         try {
-            let studentID = data.find((d) => d.id === id)
+            // let index = data.findIndex((d) => d.id === id)
 
             //test if function is getting the right data
-            console.log(studentID)
+            // console.log(studentID)
 
-            let index = data.indexOf(studentID)
-            data.splice(index, 1)
+            // let index = data.indexOf(studentID)
+            // data.splice(index, 1)
+
+            data =data.filter((d) => d.id !== id)
 
             // update data file
              fs.writeFile("./data.json", JSON.stringify(data), (error) => {
@@ -88,7 +90,7 @@ const deleteData  = (id)=> {
                 }
             })
 
-        resolve(data)
+        resolve()
             
         } catch (error) {
             console.log("Could not remove data")
